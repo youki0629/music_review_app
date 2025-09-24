@@ -1,11 +1,21 @@
-<footer id='footer' class='footer-bottom'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-sm-6 col-12'>
-        <div class='copyright'>
-          <p>Copyright © 2019. RUNTEQ</p>
-        </div>
-      </div>
+<footer class="app-footer">
+  <div class="container footer-inner">
+    <!-- 左：コピーライト -->
+    <div class="footer-left">
+      <p class="copyright">&copy; <%= Time.current.year %> MusicReview</p>
+    </div>
+
+    <!-- 右：ナビ -->
+    <div class="footer-right">
+      <nav class="footer-nav">
+        <%= link_to "ホーム", root_path %>
+        <%= link_to "投稿一覧", posts_path %>
+        <% if user_signed_in? %>
+          <%= link_to "マイページ", user_path(current_user) %>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+      </nav>
     </div>
   </div>
 </footer>
