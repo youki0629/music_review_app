@@ -1,0 +1,25 @@
+<header class="app-header">
+  <div class="container header-inner">
+    <!-- 左：ロゴ／ホーム -->
+    <div class="brand-and-nav">
+      <%= link_to "MusicReview", root_path, class: "brand" %>
+      <nav class="nav-links">
+        <%= link_to "レビュー一覧", posts_path %>  <!-- reviews_path → posts_path に変更 -->
+      </nav>
+    </div>
+
+    <!-- 右：認証まわり -->
+    <div class="auth-area">
+      <% if user_signed_in? %>
+        <span class="user-label">
+          <%= current_user.respond_to?(:name) ? current_user.name : current_user.email %> さん
+        </span>
+        <%= link_to "投稿する", new_post_path, class: "btn btn-dark" %>  <!-- new_review_path → new_post_path に変更 -->
+        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
+      <% else %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-dark" %>
+      <% end %>
+    </div>
+  </div>
+</header>
