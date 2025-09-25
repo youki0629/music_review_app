@@ -1,1 +1,22 @@
-<h1> Music Review App</h1>
+<h1>Music Review App</h1>
+
+<!-- レビュー管理へのナビゲーション -->
+<div class="review-navigation" style="margin-bottom: 30px; text-align: center;">
+  <%= link_to "レビュー管理ページへ", reviews_path, 
+      class: "btn btn-outline-primary", 
+      style: "padding: 10px 20px; text-decoration: none;" %>
+</div>
+
+<!-- レビュー一覧表示 -->
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
+      <h3><%= link_to review.title, review_path(review) %></h3>
+      <p>投稿者: <%= review.user.email %></p>
+      <p><%= review.body %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>まだレビューが投稿されていません。</p>
+  <p><%= link_to "最初のレビューを投稿する", new_review_path, class: "btn btn-primary" %></p>
+<% end %>

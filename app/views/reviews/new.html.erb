@@ -1,0 +1,36 @@
+<h1 class="text-xl font-bold mb-4">レビュー投稿</h1>
+
+<% if @review.errors.any? %>
+  <div class="mb-4 p-3 border rounded bg-red-50">
+    <p class="font-semibold">エラーがあります（<%= @review.errors.count %>件）</p>
+    <ul class="list-disc ml-5">
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @review, url: reviews_path, local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, "タイトル", class: "block font-medium" %>
+    <%= f.text_field :title, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :artist, "アーティスト", class: "block font-medium" %>
+    <%= f.text_field :artist, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :genre, "ジャンル", class: "block font-medium" %>
+    <%= f.text_field :genre, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :body, "本文", class: "block font-medium" %>
+    <%= f.text_area :body, rows: 6, class: "border rounded w-full p-2" %>
+  </div>
+
+  <%= f.submit "投稿する", class: "px-4 py-2 rounded bg-indigo-600 text-white" %>
+<% end %>

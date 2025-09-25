@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  # get "reviews/new"
+  # get "reviews/create"
   devise_for :users
+  resources :users, only: [:show]
   get "home/index"
   resources :posts
   root "home#index"
+  resources :reviews, only: [:index, :show, :new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

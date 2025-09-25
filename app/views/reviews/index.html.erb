@@ -1,0 +1,18 @@
+<h1>マイレビュー一覧</h1>
+
+<%= link_to "新しいレビューを投稿", new_review_path, class: "btn btn-primary" %>
+
+<% if @reviews.any? %>
+  <div class="reviews-list">
+    <% @reviews.each do |review| %>
+      <div class="review-item">
+        <h3><%= link_to review.title, review_path(review) %></h3>
+        <p>アーティスト: <%= review.artist %></p>
+        <p>ジャンル: <%= review.genre %></p>
+        <p>投稿日: <%= review.created_at.strftime("%Y年%m月%d日") %></p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>まだレビューが投稿されていません。</p>
+<% end %>

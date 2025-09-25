@@ -1,0 +1,16 @@
+<h1><%= @review.title %></h1>
+
+<div class="review-details">
+  <p><strong>アーティスト:</strong> <%= @review.artist %></p>
+  <p><strong>ジャンル:</strong> <%= @review.genre %></p>
+  <p><strong>投稿日:</strong> <%= @review.created_at.strftime("%Y年%m月%d日") %></p>
+</div>
+
+<div class="review-body">
+  <h3>レビュー内容</h3>
+  <p><%= simple_format(@review.body) %></p>
+</div>
+
+<div class="actions">
+  <%= link_to "一覧に戻る", reviews_path %>
+</div>

@@ -9,7 +9,7 @@
     <div class="footer-right">
       <nav class="footer-nav">
         <%= link_to "ホーム", root_path %>
-        <%= link_to "投稿一覧", posts_path %>
+        <%= link_to "レビュー一覧", reviews_path %>
         <% if user_signed_in? %>
           <%= link_to "マイページ", user_path(current_user) %>
         <% else %>
