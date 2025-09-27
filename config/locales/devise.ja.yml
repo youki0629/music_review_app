@@ -1,0 +1,20 @@
+ja:
+  devise:
+    passwords:
+      send_instructions: "パスワード再設定用のメールを送信しました。"
+      updated: "パスワードを変更しました。"
+      updated_not_active: "パスワードを変更しました。"
+      no_token: "このページには、パスワード再設定メールのリンクからアクセスしてください。"
+    mailer:
+      reset_password_instructions:
+        subject: "パスワード再設定のご案内"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+    registrations:
+      updated: "アカウント情報を更新しました。"
+      signed_up: "アカウント登録が完了しました。"
+    failure:
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+    edit:
+      change_your_password: "パスワード変更"

@@ -1,0 +1,41 @@
+ja:
+  # フォームのラベル
+  helpers:
+    label:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        current_password: "現在のパスワード"
+      # 必要に応じて review なども
+      review:
+        title: "タイトル"
+        artist: "アーティスト"
+        genre: "ジャンル"
+        body: "本文"
+
+    # 送信ボタンの文言
+    submit:
+      user:
+        create: "登録する"
+        update: "パスワードを変更する"
+      review:
+        create: "投稿する"
+        update: "パスワードを変更する"
+
+  # モデル名（任意）
+  activerecord:
+    models:
+      user: "ユーザー"
+      review: "レビュー"
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        current_password: "現在のパスワード"
+      review:
+        title: "タイトル"
+        artist: "アーティスト"
+        genre: "ジャンル"
+        body: "本文"
