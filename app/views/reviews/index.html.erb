@@ -10,6 +10,15 @@
         <p>アーティスト: <%= review.artist %></p>
         <p>ジャンル: <%= review.genre %></p>
         <p>投稿日: <%= review.created_at.strftime("%Y年%m月%d日") %></p>
+        
+        <div class="review-actions">
+          <%= link_to '詳細', review %>
+          <%= link_to '編集', edit_review_path(review) %>
+          <%= link_to '削除', review, data: { 
+                turbo_method: :delete, 
+                turbo_confirm: '本当に削除しますか？' 
+              } %>
+        </div>
       </div>
     <% end %>
   </div>
