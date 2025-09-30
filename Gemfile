@@ -70,3 +70,15 @@ gem "rails-i18n"
 # cat Procfile.devgem "tailwindcss-rails", "~> 4.3"
 
 gem "devise-i18n"
+
+gem "kaminari", "1.2.2"
+
+gem "bootstrap", "~> 5.2"        # 追加
+
+gem "jquery-rails"               # 追加
+
+gem "bootstrap5-kaminari-views" # 追加
+
+
+
+gem "dartsass-sprockets"

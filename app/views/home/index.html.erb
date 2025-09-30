@@ -1,22 +1,41 @@
-<h1>Music Review App</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-8 col-lg-6">
+      
+      <!-- タイトル -->
+      <div class="text-center mb-4">
+        <h1 class="display-5 mb-0">Music Sharing</h1>
+      </div>
 
-<!-- レビュー管理へのナビゲーション -->
-<div class="review-navigation" style="margin-bottom: 30px; text-align: center;">
-  <%= link_to "レビュー管理ページへ", reviews_path, 
-      class: "btn btn-outline-primary", 
-      style: "padding: 10px 20px; text-decoration: none;" %>
-</div>
+      <!-- ウェルカムメッセージ -->
+      <div class="text-center mb-4">
+        <p class="lead text-muted mb-3">
+          音楽レビューアプリへ<br class="d-sm-none">ようこそ！
+        </p>
+        <p class="text-secondary">
+          お気に入りの音楽について<br>
+          レビューを投稿・閲覧できます
+        </p>
+      </div>
 
-<!-- レビュー一覧表示 -->
-<% if @reviews.any? %>
-  <% @reviews.each do |review| %>
-    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
-      <h3><%= link_to review.title, review_path(review) %></h3>
-      <p>投稿者: <%= review.user.email %></p>
-      <p><%= review.body %></p>
+      <!-- メインナビゲーション -->
+      <div class="text-center mb-4">
+        <div class="d-grid gap-2 d-sm-block">
+          <%= link_to "レビュー一覧を見る", reviews_path, 
+              class: "btn btn-primary btn-lg mb-2 mb-sm-0 me-sm-2" %>
+          
+          <%= link_to "新しいレビューを投稿", new_review_path, 
+              class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+
+      <!-- 統計情報 -->
+      <div class="text-center">
+        <p class="text-muted small">
+          みんなで音楽の魅力を共有しましょう！
+        </p>
+      </div>
+      
     </div>
-  <% end %>
-<% else %>
-  <p>まだレビューが投稿されていません。</p>
-  <p><%= link_to "最初のレビューを投稿する", new_review_path, class: "btn btn-primary" %></p>
-<% end %>
+  </div>
+</div>

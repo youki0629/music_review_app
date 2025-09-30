@@ -2,9 +2,11 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-
   def index
-    @reviews = current_user.reviews.order(created_at: :desc)
+    @reviews = current_user.reviews
+                           .order(created_at: :desc)
+                           .page(params[:page])
+                           .per(20)
   end
 
   def show
