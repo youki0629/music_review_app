@@ -1,39 +1,85 @@
-<h1>レビューを編集</h1>
-
-<% if @review.errors.any? %>
-  <div class="mb-4 p-3 border rounded bg-red-50">
-    <p class="font-semibold">エラーがあります（<%= @review.errors.count %>件）</p>
-    <ul class="list-disc ml-5">
-      <% @review.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="row w-100">
+  <div class="col-12">
+    <div class="card shadow-lg border-0" style="min-height: 80vh;">
+      
+      <!-- エラーメッセージ（Bootstrap版） -->
+      <% if @review.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong>入力内容を確認してください（<%= @review.errors.count %>件）</strong>
+          <ul class="mb-0 mt-2">
+            <% @review.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
+
+      <!-- フォーム（Bootstrap統一） -->
+      <div class="card-body">
+        <h2 class="mb-4">レビューを編集</h2>
+        
+        <%= form_with(model: @review, local: true) do |f| %>
+          
+          <!-- タイトル -->
+          <div class="mb-3">
+            <%= f.label :title, class: "form-label" %>
+            <span class="text-danger">*</span>
+            <%= f.text_field :title, class: "form-control", placeholder: "例：最高のロックアルバム！" %>
+          </div>
+
+          <!-- アーティスト -->
+          <div class="mb-3">
+            <%= f.label :artist, class: "form-label" %>
+            <span class="text-danger">*</span>
+            <%= f.text_field :artist, class: "form-control", placeholder: "例：Queen" %>
+          </div>
+          
+          <!-- ジャンル -->
+          <div class="mb-3">
+            <%= f.label :genre, "ジャンル", class: "form-label" %>
+            <%= f.text_field :genre, class: "form-control", placeholder: "例：Rock" %>
+          </div>
+
+          <!-- 歌詞について -->
+          <div class="mb-3">
+            <%= f.label :lyrics_review, "歌詞", class: "form-label" %>
+            <%= f.text_area :lyrics_review, rows: 3, class: "form-control", placeholder: "歌詞の印象や感想を教えてください..." %>
+          </div>
+
+          <!-- メロディについて -->
+          <div class="mb-3">
+           <%= f.label :melody_review, "メロディ", class: "form-label" %>
+           <%= f.text_area :melody_review, rows: 3, class: "form-control", placeholder: "メロディの印象や感想を教えてください..." %>
+          </div>
+
+         <!-- 歌声について -->
+         <div class="mb-3">
+           <%= f.label :vocals_review, "歌声", class: "form-label" %>
+           <%= f.text_area :vocals_review, rows: 3, class: "form-control", placeholder: "歌声の印象や感想を教えてください..." %>
+         </div>
+
+        <!-- 演奏について -->
+        <div class="mb-3">
+          <%= f.label :performance_review, "演奏", class: "form-label" %>
+          <%= f.text_area :performance_review, rows: 3, class: "form-control", placeholder: "演奏の印象や感想を教えてください..." %>
+        </div>
+
+          <!-- レビュー内容 -->
+          <div class="mb-3">
+            <%= f.label :body, "レビュー内容", class: "form-label" %>
+            <span class="text-danger">*</span>
+            <%= f.text_area :body, rows: 6, class: "form-control", placeholder: "この音楽の魅力を詳しく教えてください..." %>
+            <div class="form-text">あなたの感想や、おすすめポイントを自由に書いてください</div>
+          </div>
+
+          <!-- ボタン部分 -->
+          <div class="d-flex justify-content-center gap-3 mt-4">
+            <%= f.submit "更新する", class: "btn btn-primary btn-lg px-5", style: "border-radius: 0; background: linear-gradient(45deg, #007bff, #0056b3); border: none;" %>
+            <%= link_to "詳細", @review, class: "btn btn-outline-secondary btn-lg px-5 me-2", style: "border-radius: 0;" %>
+            <%= link_to "一覧", reviews_path, class: "btn btn-outline-secondary btn-lg px-5", style: "border-radius: 0;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= form_with(model: @review, local: true) do |form| %>
-  <div class="mb-3">
-    <%= form.label :title, "タイトル", class: "block font-medium" %>
-    <%= form.text_field :title, class: "border rounded w-full p-2" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :artist, "アーティスト", class: "block font-medium" %>
-    <%= form.text_field :artist, class: "border rounded w-full p-2" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :genre, "ジャンル", class: "block font-medium" %>
-    <%= form.text_field :genre, class: "border rounded w-full p-2" %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :body, "レビュー内容", class: "block font-medium" %>
-    <%= form.text_area :body, rows: 6, class: "border rounded w-full p-2" %>
-  </div>
-
-  <%= form.submit "更新", class: "px-4 py-2 rounded bg-indigo-600 text-white" %>
-<% end %>
-
-<%= link_to '詳細', @review %> |
-<%= link_to '一覧', reviews_path %>
+</div>

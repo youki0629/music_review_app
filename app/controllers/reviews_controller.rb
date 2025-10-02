@@ -53,6 +53,9 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :artist, :genre, :body)
+    params.require(:review).permit(
+      :title, :artist, :genre, :body,
+      :lyrics_review, :melody_review, :vocals_review, :performance_review
+    )
   end
 end

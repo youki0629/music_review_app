@@ -1,16 +1,134 @@
-<h1><%= @review.title %></h1>
+<div class="row w-100">
+  <div class="col-12">
+    <div class="card shadow-lg border-0" style="min-height: 80vh;">
+      <div class="card-body">
 
-<div class="review-details">
-  <p><strong>アーティスト:</strong> <%= @review.artist %></p>
-  <p><strong>ジャンル:</strong> <%= @review.genre %></p>
-  <p><strong>投稿日:</strong> <%= @review.created_at.strftime("%Y年%m月%d日") %></p>
-</div>
+        <!-- タイトル部分 -->
+        <div class="text-center mb-4">
+          <h1 class="card-title h2 mb-3"><%= @review.title %></h1>
+          <p class="text-muted">
+            <i class="bi bi-calendar3"></i>
+            <%= @review.created_at.strftime("%Y年%m月%d日") %>
+          </p>
+        </div>
 
-<div class="review-body">
-  <h3>レビュー内容</h3>
-  <p><%= simple_format(@review.body) %></p>
-</div>
+        <!-- 基本情報カード（そのまま） -->
+        <div class="card mb-4" style="background-color: #f8f9fa;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <h5 class="text-primary mb-2">
+                  <i class="bi bi-person-fill"></i> アーティスト
+                </h5>
+                <p class="h6 mb-0"><%= @review.artist %></p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <h5 class="text-primary mb-2">
+                  <i class="bi bi-music-note-list"></i> ジャンル
+                </h5>
+                <p class="h6 mb-0">
+                  <%= @review.genre.present? ? @review.genre : "未設定" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="actions">
-  <%= link_to "一覧に戻る", reviews_path %>
+        <!-- 詳細レビューセクション -->
+        <div class="card mb-4">
+          <div class="card-header bg-secondary text-white">
+            <h3 class="card-title mb-0">
+              <i class="bi bi-list-check"></i> チェックポイント
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <!-- 歌詞について -->
+              <% if @review.lyrics_review.present? %>
+                <div class="col-md-6 mb-4">
+                  <div class="border-start border-primary border-3 ps-3">
+                    <h5 class="text-primary mb-2">
+                      <i class="bi bi-file-text"></i> 歌詞
+                    </h5>
+                    <p class="mb-0" style="line-height: 1.6;">
+                      <%= simple_format(@review.lyrics_review) %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+
+              <!-- メロディについて -->
+              <% if @review.melody_review.present? %>
+                <div class="col-md-6 mb-4">
+                  <div class="border-start border-success border-3 ps-3">
+                    <h5 class="text-success mb-2">
+                      <i class="bi bi-music-note"></i> メロディ
+                    </h5>
+                    <p class="mb-0" style="line-height: 1.6;">
+                      <%= simple_format(@review.melody_review) %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+
+              <!-- 歌声について -->
+              <% if @review.vocals_review.present? %>
+                <div class="col-md-6 mb-4">
+                  <div class="border-start border-warning border-3 ps-3">
+                    <h5 class="text-warning mb-2">
+                      <i class="bi bi-mic"></i> 歌声
+                    </h5>
+                    <p class="mb-0" style="line-height: 1.6;">
+                      <%= simple_format(@review.vocals_review) %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+
+              <!-- 演奏について -->
+              <% if @review.performance_review.present? %>
+                <div class="col-md-6 mb-4">
+                  <div class="border-start border-info border-3 ps-3">
+                    <h5 class="text-info mb-2">
+                      <i class="bi bi-boombox"></i> 演奏
+                    </h5>
+                    <p class="mb-0" style="line-height: 1.6;">
+                      <%= simple_format(@review.performance_review) %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 総合感想（最後に移動） -->
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title mb-0">
+              <i class="bi bi-chat-text"></i> レビュー
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="review-content" style="line-height: 1.8; font-size: 1.1rem;">
+              <%= simple_format(@review.body) %>
+            </div>
+          </div>
+        </div>
+
+        <!-- アクションボタン -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <%= link_to "編集", edit_review_path(@review),
+              class: "btn btn-primary btn-lg px-5",
+              style: "border-radius: 0; background: linear-gradient(45deg, #007bff, #0056b3); border: none;" %>
+          <%= link_to "一覧に戻る", reviews_path,
+              class: "btn btn-outline-secondary btn-lg px-5",
+              style: "border-radius: 0;" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,2 +1,51 @@
-<%= render 'shared/error_messages', object: @review %>
-<%= render 'reviews/form_fields', review: @review %>
+<%= form_with model: @review, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="mb-3">
+    <%= f.label :title, "楽曲名", class: "form-label" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "楽曲名を入力してください" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :artist, "アーティスト名", class: "form-label" %>
+    <%= f.text_field :artist, class: "form-control", placeholder: "アーティスト名を入力してください" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :genre, "ジャンル", class: "form-label" %>
+    <%= f.text_field :genre, class: "form-control", placeholder: "ジャンル（例：ポップス、ロック等）" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :body, "総合感想", class: "form-label" %>
+    <%= f.text_area :body, class: "form-control", rows: 4, placeholder: "楽曲全体の感想を入力してください" %>
+  </div>
+  
+  <!-- 詳細項目（任意入力） -->
+  <hr class="my-4">
+  <h5>詳細感想（任意）</h5>
+  
+  <div class="mb-3">
+    <%= f.label :lyrics_review, "歌詞について", class: "form-label" %>
+    <%= f.text_area :lyrics_review, class: "form-control", rows: 3, placeholder: "歌詞についての感想（任意）" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :melody_review, "メロディについて", class: "form-label" %>
+    <%= f.text_area :melody_review, class: "form-control", rows: 3, placeholder: "メロディについての感想（任意）" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :vocals_review, "歌声について", class: "form-label" %>
+    <%= f.text_area :vocals_review, class: "form-control", rows: 3, placeholder: "歌声についての感想（任意）" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= f.label :performance_review, "演奏について", class: "form-label" %>
+    <%= f.text_area :performance_review, class: "form-control", rows: 3, placeholder: "演奏についての感想（任意）" %>
+  </div>
+  
+  <div class="d-grid">
+    <%= f.submit "レビューを投稿", class: "btn btn-primary" %>
+  </div>
+<% end %>
