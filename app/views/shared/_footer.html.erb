@@ -1,21 +1,25 @@
-<footer class="app-footer">
-  <div class="container footer-inner">
-    <!-- 左：コピーライト -->
-    <div class="footer-left">
-      <p class="copyright">&copy; <%= Time.current.year %> MusicSharing</p>
-    </div>
+<footer class="bg-dark text-light py-4 mt-auto">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- 左：コピーライト -->
+      <div class="col-md-6">
+        <p class="mb-0 text-muted">
+          &copy; <%= Time.current.year %> MusicSharing
+        </p>
+      </div>
 
-    <!-- 右：ナビ -->
-    <div class="footer-right">
-      <nav class="footer-nav">
-        <%= link_to "ホーム", root_path %>
-        <%= link_to "レビュー一覧", reviews_path %>
-        <% if user_signed_in? %>
-          <%= link_to "マイページ", user_path(current_user) %>
-        <% else %>
-          <%= link_to "ログイン", new_user_session_path %>
-        <% end %>
-      </nav>
+      <!-- 右：ナビゲーション -->
+      <div class="col-md-6">
+        <nav class="d-flex justify-content-md-end justify-content-center">
+          <%= link_to "ホーム", root_path, class: "text-light text-decoration-none me-3" %>
+          <%= link_to "レビュー一覧", reviews_path, class: "text-light text-decoration-none me-3" %>
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", user_path(current_user), class: "text-light text-decoration-none" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class: "text-light text-decoration-none" %>
+          <% end %>
+        </nav>
+      </div>
     </div>
   </div>
 </footer>

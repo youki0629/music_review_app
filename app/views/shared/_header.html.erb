@@ -1,25 +1,24 @@
-<header class="app-header">
-  <div class="container header-inner">
-    <!-- 左：ロゴ／ホーム -->
-    <div class="brand-and-nav">
-      <%= link_to "Music Sharing", root_path, class: "brand" %>
-      <nav class="nav-links">
-        <%= link_to "レビュー一覧", reviews_path %> <!-- reviews_path に変更 -->
-      </nav>
-    </div>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <!-- 左：ブランドとナビゲーション -->
+  <div class="d-flex align-items-center">
+    <%= link_to "Music Sharing", root_path, class: "navbar-brand me-4 px-3" %>
+    <nav class="d-none d-md-flex">
+      <%= link_to "レビュー一覧", reviews_path, class: "nav-link text-light me-3" %>
+    </nav>
+  </div>
 
-    <!-- 右：認証まわり -->
-    <div class="auth-area">
-      <% if user_signed_in? %>
-        <span class="user-label">
-          <%= current_user.respond_to?(:name) ? current_user.name : current_user.email %> さん
-        </span>
-        <%= link_to "投稿する", new_review_path, class: "btn btn-dark" %> <!-- new_review_path → new_post_path に変更 -->
-        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
-      <% else %>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-dark" %>
-      <% end %>
-    </div>
+  <!-- 右：認証エリア -->
+  <div class="d-flex align-items-center me-3">
+    <% if user_signed_in? %>
+      <span class="btn btn-primary me-2">
+        <%= current_user.respond_to?(:name) ? current_user.name : current_user.email %> さん
+      </span>
+      <%= link_to "投稿する", new_review_path, class: "btn btn-success me-2" %>
+      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, 
+                    class: "btn btn-outline-light", form: { style: "display: inline;" } %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light me-2" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
 </header>
