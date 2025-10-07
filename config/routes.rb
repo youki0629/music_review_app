@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "genres/index"
   # get "reviews/new"
   # get "reviews/create"
   devise_for :users
